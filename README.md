@@ -1,3 +1,7 @@
+# Persisting User Status
+
+This package is forked from following package. The only difference is that this one stores connections in the actual db and doesn't remove them on logout or socket close.
+
 user-status [![Build Status](https://travis-ci.org/mizzao/meteor-user-status.png?branch=master)](https://travis-ci.org/mizzao/meteor-user-status)
 ===========
 
@@ -18,7 +22,7 @@ Tracks users that are online and allows you to use them in useful ways, such as 
 Install the smart package using **[meteorite](https://github.com/oortcloud/meteorite)**:
 
 ```sh
-$ mrt add user-status
+$ mrt add persisting-user-status
 ```
 
 ## Basic Usage - Online State
