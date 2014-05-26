@@ -5,7 +5,7 @@
   We may want to make UserSessions a server collection to take advantage of indices.
   Will implement if someone has enough online users to warrant it.
 ###
-UserConnections = new Meteor.Collection("user_status_sessions", { connection: null })
+UserConnections = new Meteor.Collection("user_status_sessions")
 
 statusEvents = new (Npm.require('events').EventEmitter)()
 
@@ -109,7 +109,12 @@ removeSession = (userId, connectionId, date) ->
   # Don't emit this again if the connection was already closed
   return unless conn?
 
-  UserConnections.remove(connectionId)
+  UserConnections.update connectionId,
+    $set:
+      logoutTime: date
+      loggedOut: true
+      idle: true
+
 
   statusEvents.emit "connectionLogout",
     userId: userId
